@@ -1,7 +1,7 @@
 #!/usr/bin/python
 from gi.repository import Gtk
 from gi.repository import Gio
-from gi.repository import AppIndicator
+from gi.repository import AppIndicator3 as AppIndicator
 from gi.repository import Notify
 
 import os
@@ -13,7 +13,7 @@ def _get_icon_name_from_gicon(gicon):
     name = "image-missing"
     theme = Gtk.IconTheme.get_default()
     for n in gicon.get_names():
-        if theme.lookup_icon(n, Gtk.icon_size_lookup(Gtk.IconSize.MENU, 0, 0), 0):
+        if theme.lookup_icon(n, Gtk.IconSize.MENU, 0):
             name = n
             break
     return n
@@ -94,7 +94,7 @@ class Main:
         s = ''
         with open(os.path.expanduser('~/.config/indicator-usb'), 'w') as f:
             f.write('%i\n%i\n' % ((1 if self.mon.show_hdd else 0), (1 if self.mon.show_net else 0)))
-        self.mon.refresh()    
+        self.mon.refresh()   
 
     def update(self):
         self.ind.set_status(
@@ -161,4 +161,3 @@ class Main:
 
 m = Main()
 Gtk.main()
-
