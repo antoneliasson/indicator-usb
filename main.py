@@ -18,7 +18,7 @@ def _get_icon_name_from_gicon(gicon):
             break
     return n
 
-    
+
 class Monitor:
 
     mon = None
@@ -56,8 +56,8 @@ class Monitor:
     def _eject_cb(self, m, result, t):
         #XXX: pynotify does not support gicon
         Notify.init('indicator-usb')
-    	n = Notify.Notification.new('Device can be removed now', m.get_name(), _get_icon_name_from_gicon(m.get_icon()))
-    	n.show()
+        n = Notify.Notification.new('Device can be removed now', m.get_name(), _get_icon_name_from_gicon(m.get_icon()))
+        n.show()
 
     def eject(self, s, m):
         m.unmount(Gio.MountUnmountFlags.NONE, None, self._eject_cb, None)
