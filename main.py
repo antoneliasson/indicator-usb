@@ -94,7 +94,7 @@ class Main:
         s = ''
         with open(os.path.expanduser('~/.config/indicator-usb'), 'w') as f:
             f.write('%i\n%i\n' % ((1 if self.mon.show_hdd else 0), (1 if self.mon.show_net else 0)))
-        self.mon.refresh()   
+        self.mon.refresh()
 
     def update(self):
         self.ind.set_status(

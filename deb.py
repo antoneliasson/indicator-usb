@@ -6,14 +6,14 @@ def run(c):
 
 def build(dir, name, ver, desc, deps):
     run('mkdir ' + dir + 'DEBIAN')
-    
+
     l = (name, ver, ', '.join(deps), desc)
     i = 'Package: %s\nPriority: optional\nSection: gnome\nMaintainer: Eugeny Pankov <john.pankov@gmail.com>\nArchitecture: all\nVersion: %s\nDepends: %s\nDescription: %s\nInstalled-Size: 28\n' % l
     with open(dir + 'DEBIAN/control', 'w') as f:
         f.write(i)
-        
+
     run('fakeroot dpkg-deb -b ' + dir + ' ' + name + '-' + ver + '.deb')
-    
+
 run('mkdir -p deb/usr/bin')
 run('mkdir -p deb/usr/share/icons/hicolor/22x22/status')
 
